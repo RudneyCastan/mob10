@@ -1,0 +1,913 @@
+{
+  "setup": {
+    "link": "http://92web-lb-179338379.us-east-2.elb.amazonaws.com:8193/jderest/v3/orchestrator/",
+    "maintitle": "Main MenuW"
+  },
+  "task": [
+    {
+      "type": "menu",
+      "name": "DistributionA",
+      "title": "DistributionA",
+      "subtitle": "Distribution Programs",
+      "rowgrouping": "1"
+    },
+    {
+      "type": "menu",
+      "name": "DistributionB",
+      "title": "DistributionB",
+      "subtitle": "Distribution Programs",
+      "rowgrouping": "1"
+    },
+    {
+      "type": "menu",
+      "name": "FinancialA",
+      "title": "FinancialA",
+      "subtitle": "Financial Programs",
+      "rowgrouping": "2"
+    },
+    {
+      "type": "menu",
+      "name": "FinancialB",
+      "title": "FinancialB",
+      "subtitle": "Financial Programs",
+      "rowgrouping": "2"
+    },
+    {
+      "type": "menu",
+      "name": "FinancialC",
+      "title": "FinancialC",
+      "subtitle": "Financial Programs",
+      "rowgrouping": "2"
+    },
+    {
+      "type": "menu",
+      "name": "ManufacturingA",
+      "title": "ManufacturingA",
+      "subtitle": "Financial Programs",
+      "rowgrouping": "3",
+      "task": [
+        {
+          "type": "menu",
+          "name": "preparation",
+          "title": "Preparation",
+          "subtitle": "Daily Order Preparation",
+          "rowgrouping": "1",
+          "size": "30"
+        },
+        {
+          "type": "menu",
+          "name": "reporting",
+          "title": "Reporting",
+          "subtitle": "Daily Order Reporting",
+          "rowgrouping": "1",
+          "size": "30"
+        },
+        {
+          "type": "menu",
+          "name": "other",
+          "title": "WO Menu",
+          "subtitle": "WO Applications",
+          "rowgrouping": "2",
+          "size": "30",
+          "task": [
+            {
+              "type": "form",
+              "name": "WOform1",
+              "title": "WO Completion",
+              "rowgrouping": "1",
+              "body": [
+                {
+                  "name": "wonumber",
+                  "label": "WO Number",
+                  "type": "Number",
+                  "object": "TextField",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "1",
+                  "border": "",
+                  "mandatory": "true"
+                },
+                {
+                  "name": "quantity",
+                  "label": "Quantity Completed",
+                  "type": "Number",
+                  "object": "TextField",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "2",
+                  "border": "",
+                  "mandatory": "true"
+                },
+                {
+                  "name": "textresponse",
+                  "label": "response",
+                  "type": "",
+                  "object": "Text",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "3",
+                  "border": "",
+                  "mandatory": ""
+                }
+              ],
+              "buttons": [
+                {
+                  "name": "button1",
+                  "label": "Inquiry Qty",
+                  "api": "ORCH_POC100_WOCompletion",
+                  "api_input": [
+                    {
+                      "key": "cExecutionMode_1Get_2Upd",
+                      "value": "@1"
+                    },
+                    {
+                      "key": "Order_Number",
+                      "value": "wonumber"
+                    }
+                  ],
+                  "api_outputSuccess": [
+                    {
+                      "key": "QtyCompletedCurr",
+                      "targetfield": "",
+                      "prefixmsg": "Total Quantity: ",
+                      "suffixmsg": " (kg)"
+                    },
+                    {
+                      "key": "QtyCompletedCurr",
+                      "targetfield": "quantity",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    },
+                    {
+                      "key": "QtyCompletedCurr",
+                      "targetfield": "textresponse",
+                      "prefixmsg": "RESPONSE: \nTotal Completed Quantity: ",
+                      "suffixmsg": " (kg)"
+                    }
+                  ],
+                  "api_outputError": [
+                    {
+                      "key": "message",
+                      "targetfield": "",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    },
+                    {
+                      "key": "message",
+                      "targetfield": "textresponse",
+                      "prefixmsg": "Error on Request:\n",
+                      "suffixmsg": "\n>>"
+                    }
+                  ]
+                },
+                {
+                  "name": "button2",
+                  "label": "Complete Qty",
+                  "api": "ORCH_POC100_WOCompletion",
+                  "api_input": [
+                    {
+                      "key": "cExecutionMode_1Get_2Upd",
+                      "value": "@2"
+                    }
+                  ],
+                  "api_outputSuccess": [
+                    {
+                      "key": "QtyCompletedUpd",
+                      "targetfield": "",
+                      "prefixmsg": "Total Quantity: ",
+                      "suffixmsg": " (kg)"
+                    }
+                  ],
+                  "api_outputError": [
+                    {
+                      "key": "message",
+                      "targetfield": "",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "form",
+              "name": "general1",
+              "title": "WO List",
+              "rowgrouping": "2",
+              "body": [
+                {
+                  "name": "wonumber1",
+                  "label": "WO Number",
+                  "type": "Number",
+                  "object": "TextField",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "1",
+                  "border": "",
+                  "mandatory": "true"
+                },
+                {
+                  "name": "wonumber2",
+                  "label": "WO Number",
+                  "type": "Number",
+                  "object": "Text",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "2",
+                  "border": "",
+                  "mandatory": "true"
+                },
+                {
+                  "name": "quantity2",
+                  "label": "Quantity Completed",
+                  "type": "Number",
+                  "object": "Text",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "3",
+                  "border": "",
+                  "mandatory": "true"
+                },
+                {
+                  "name": "quantity3",
+                  "label": "Response",
+                  "type": "Number",
+                  "object": "Text",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "3",
+                  "border": "",
+                  "mandatory": "true"
+                }
+              ],
+              "buttons": [
+                {
+                  "name": "button3",
+                  "label": "Refresh List",
+                  "api": "ORCH_POC100_WOCompletionX",
+                  "api_input": [
+                    {
+                      "key": "wonbr",
+                      "value": "wonumber1"
+                    },
+                    {
+                      "key": "cExecutionMode_1Get_2Upd",
+                      "value": "@21"
+                    }
+                  ],
+                  "api_outputSuccess": [
+                    {
+                      "key": "QtyCompletedUpd",
+                      "targetfield": "",
+                      "prefixmsg": "Total Quantity: ",
+                      "suffixmsg": " (kg)"
+                    }
+                  ],
+                  "api_outputError": [
+                    {
+                      "key": "message",
+                      "targetfield": "",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "menu",
+          "name": "other",
+          "title": "WO Inquiry X",
+          "subtitle": "2 WO Applications X",
+          "rowgrouping": "2",
+          "size": "30",
+          "task": [
+            {
+              "type": "form",
+              "name": "WOform2",
+              "title": "WO Inquiry",
+              "rowgrouping": "1",
+              "body": [
+                {
+                  "name": "wonumber",
+                  "label": "WO Number",
+                  "type": "Number",
+                  "object": "TextField",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "1",
+                  "border": "",
+                  "mandatory": "true"
+                },
+                {
+                  "name": "quantity",
+                  "label": "Quantity Completed",
+                  "type": "Number",
+                  "object": "TextField",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "2",
+                  "border": "",
+                  "mandatory": "true"
+                },
+                {
+                  "name": "textresponse",
+                  "label": "response",
+                  "type": "",
+                  "object": "List",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "3",
+                  "border": "",
+                  "mandatory": "",
+                  "keystruct": [
+                    {
+                      "fieldname": "Order Number",
+                      "prefixmsg": "Order#: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "1"
+                    },
+                    {
+                      "fieldname": "Order Type",
+                      "prefixmsg": "Type: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "1"
+                    },
+                    {
+                      "fieldname": "2nd Item Number",
+                      "prefixmsg": "Item: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "2"
+                    },
+                    {
+                      "fieldname": "Description",
+                      "prefixmsg": "Name: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "2"
+                    },
+                    {
+                      "fieldname": "Quantity Ordered",
+                      "prefixmsg": "Qty: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "3"
+                    },
+                    {
+                      "fieldname": "UM",
+                      "prefixmsg": "UoM: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "3"
+                    }
+                  ]
+                }
+              ],
+              "buttons": [
+                {
+                  "name": "button1",
+                  "label": "Inquiry Qty",
+                  "api": "ORCH_POC100_WOCompletion",
+                  "api_input": [
+                    {
+                      "key": "cExecutionMode_1Get_2Upd",
+                      "value": "@1"
+                    },
+                    {
+                      "key": "Order_Number",
+                      "value": "wonumber"
+                    }
+                  ],
+                  "api_outputSuccess": [
+                    {
+                      "key": "QtyCompletedCurr",
+                      "targetfield": "",
+                      "prefixmsg": "Total Quantity: ",
+                      "suffixmsg": " (kg)"
+                    },
+                    {
+                      "key": "QtyCompletedCurr",
+                      "targetfield": "quantity",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    },
+                    {
+                      "key": "QtyCompletedCurr",
+                      "targetfield": "textresponse",
+                      "prefixmsg": "RESPONSE: \nTotal Completed Quantity: ",
+                      "suffixmsg": " (kg)"
+                    }
+                  ],
+                  "api_outputError": [
+                    {
+                      "key": "message",
+                      "targetfield": "",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    },
+                    {
+                      "key": "message",
+                      "targetfield": "textresponse",
+                      "prefixmsg": "Error on Request:\n",
+                      "suffixmsg": "\n>>"
+                    }
+                  ]
+                },
+                {
+                  "name": "button2",
+                  "label": "Find",
+                  "api": "ORCH_TEST_WOCOMPLETION",
+                  "api_input": [
+                    {
+                      "key": "Order_Number",
+                      "value": "@<451390"
+                    }
+                  ],
+                  "api_outputSuccess": [
+                    {
+                      "key": "WOList",
+                      "object": "List",
+                      "targetfield": "textresponse",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    }
+                  ],
+                  "api_outputError": [
+                    {
+                      "key": "message",
+                      "targetfield": "",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "menu",
+          "name": "other",
+          "title": "WO Inquiry List",
+          "subtitle": "Inquiry and List",
+          "rowgrouping": "3",
+          "size": "40",
+          "task": [
+            {
+              "type": "form",
+              "name": "WOform1",
+              "title": "WO Completion",
+              "rowgrouping": "1",
+              "size": "30",
+              "body": [
+                {
+                  "name": "wonumber1",
+                  "label": "WO Number",
+                  "type": "Number",
+                  "object": "TextField",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "1",
+                  "border": "",
+                  "mandatory": "true"
+                },
+                {
+                  "name": "quantity1",
+                  "label": "Quantity Completed",
+                  "type": "Number",
+                  "object": "TextField",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "2",
+                  "border": "",
+                  "mandatory": "true"
+                }
+              ],
+              "buttons": [
+                {
+                  "name": "button2",
+                  "label": "Find",
+                  "api": "ORCH_TEST_WOCOMPLETION",
+                  "api_input": [
+                    {
+                      "key": "Order_Number",
+                      "value": "wonumber2"
+                    }
+                  ],
+                  "api_outputSuccess": [
+                    {
+                      "key": "WOList",
+                      "object": "List",
+                      "targetfield": "textresponse",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    }
+                  ],
+                  "api_outputError": [
+                    {
+                      "key": "message",
+                      "targetfield": "",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "form",
+              "name": "WOform1",
+              "title": "WO Completion",
+              "rowgrouping": "1",
+              "size": "30",
+              "body": [
+                {
+                  "name": "wonumber2",
+                  "label": "WO Number",
+                  "type": "Number",
+                  "object": "TextField",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "1",
+                  "border": "",
+                  "mandatory": "true"
+                }
+              ]
+            },
+            {
+              "type": "form",
+              "name": "general1",
+              "title": "List",
+              "rowgrouping": "2",
+              "size": "70",
+              "body": [
+                {
+                  "name": "textresponse",
+                  "label": "response",
+                  "type": "",
+                  "object": "List",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "3",
+                  "border": "",
+                  "mandatory": "",
+                  "keystruct": [
+                    {
+                      "fieldname": "Order Number",
+                      "prefixmsg": "Order#: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "1"
+                    },
+                    {
+                      "fieldname": "Order Type",
+                      "prefixmsg": "Type: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "1"
+                    },
+                    {
+                      "fieldname": "2nd Item Number",
+                      "prefixmsg": "Item: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "2"
+                    },
+                    {
+                      "fieldname": "Description",
+                      "prefixmsg": "Name: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "2"
+                    },
+                    {
+                      "fieldname": "Quantity Ordered",
+                      "prefixmsg": "Qty: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "3"
+                    },
+                    {
+                      "fieldname": "UM",
+                      "prefixmsg": "UoM: ",
+                      "suffixmsg": "",
+                      "rowgrouping": "3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "menu",
+          "name": "other",
+          "title": "WO Inquiry Table",
+          "subtitle": "Inquiry and Table",
+          "rowgrouping": "3",
+          "size": "40",
+          "task": [
+            {
+              "type": "form",
+              "name": "WOform1",
+              "title": "WO Completion",
+              "rowgrouping": "1",
+              "size": "15",
+              "body": [
+                {
+                  "name": "wonumber1",
+                  "label": "WO Number",
+                  "type": "Number",
+                  "object": "TextField",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "1",
+                  "border": "",
+                  "mandatory": "true"
+                }
+              ],
+              "buttons": [
+                {
+                  "name": "button2",
+                  "label": "Find",
+                  "api": "ORCH_TEST_WOCOMPLETION",
+                  "api_input": [
+                    {
+                      "key": "Order_Number",
+                      "value": "wonumber2"
+                    }
+                  ],
+                  "api_outputSuccess": [
+                    {
+                      "key": "WOList",
+                      "object": "TableDetail",
+                      "targetfield": "textresponse2",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    }
+                  ],
+                  "api_outputError": [
+                    {
+                      "key": "message",
+                      "targetfield": "",
+                      "prefixmsg": "",
+                      "suffixmsg": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "form",
+              "name": "WOform1",
+              "title": "WO Completion",
+              "rowgrouping": "1",
+              "size": "15",
+              "body": [
+                {
+                  "name": "wonumber2",
+                  "label": "WO Number",
+                  "type": "Number",
+                  "object": "TextField",
+                  "enabled": "true",
+                  "default": "",
+                  "hint": "",
+                  "lineposition": "1",
+                  "border": "",
+                  "mandatory": "true"
+                }
+              ]
+            },
+            {
+              "type": "form",
+              "name": "general1",
+              "title": "",
+              "rowgrouping": "2",
+              "size": "5",
+              "body": [
+                {
+                  "name": "textresponse",
+                  "label": "response",
+                  "object": "TableHeader",
+                  "lineposition": "1",
+                  "border": "",
+                  "keystruct": [
+                    {
+                      "fieldname": "Order Number"
+                    },
+                    {
+                      "fieldname": "Order Type"
+                    },
+                    {
+                      "fieldname": "2nd Item Number"
+                    },
+                    {
+                      "fieldname": "Description"
+                    },
+                    {
+                      "fieldname": "Quantity Ordered"
+                    },
+                    {
+                      "fieldname": "UM"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "form",
+              "name": "general2",
+              "title": "",
+              "rowgrouping": "3",
+              "size": "80",
+              "body": [
+                {
+                  "name": "textresponse2",
+                  "label": "response",
+                  "object": "TableDetail",
+                  "enabled": "true",
+                  "border": "",
+                  "keystruct": [
+                    {
+                      "fieldname": "Order Number",
+                      "prefixmsg": "",
+                      "suffixmsg": "",
+					  "targetfield": "wonumber"
+                    },
+                    {
+                      "fieldname": "Or Ty",
+                      "prefixmsg": "",
+                      "suffixmsg": "",
+					  "targetfield": ""
+                    },
+                    {
+                      "fieldname": "2nd Item Number",
+                      "prefixmsg": "",
+                      "suffixmsg": "",
+					  "targetfield": ""
+                    },
+                    {
+                      "fieldname": "Description",
+                      "prefixmsg": "",
+                      "suffixmsg": "",
+					  "targetfield": ""
+                    },
+                    {
+                      "fieldname": "Quantity Ordered",
+                      "prefixmsg": "",
+                      "suffixmsg": "",
+					  "targetfield": "quantity"
+                    },
+                    {
+                      "fieldname": "UM",
+                      "prefixmsg": "",
+                      "suffixmsg": "",
+					  "targetfield": ""
+                    }
+                  ],
+				  
+				  
+				  "task": [
+					{
+					  "type": "form",
+					  "name": "WOform1",
+					  "title": "WO Completion",
+					  "rowgrouping": "1",
+					  "body": [
+						{
+						  "name": "wonumber",
+						  "label": "WO Number",
+						  "type": "Number",
+						  "object": "TextField",
+						  "enabled": "true",
+						  "default": "",
+						  "hint": "",
+						  "lineposition": "1",
+						  "border": "",
+						  "mandatory": "true"
+						},
+						{
+						  "name": "quantity",
+						  "label": "Quantity Completed",
+						  "type": "Number",
+						  "object": "TextField",
+						  "enabled": "true",
+						  "default": "",
+						  "hint": "",
+						  "lineposition": "2",
+						  "border": "",
+						  "mandatory": "true"
+						},
+						{
+						  "name": "textresponse",
+						  "label": "response",
+						  "type": "",
+						  "object": "Text",
+						  "enabled": "true",
+						  "default": "",
+						  "hint": "",
+						  "lineposition": "3",
+						  "border": "",
+						  "mandatory": ""
+						}
+					  ],
+					  "buttons": [
+						{
+						  "name": "button1",
+						  "label": "Inquiry Qty",
+						  "api": "ORCH_POC100_WOCompletion",
+						  "api_input": [
+							{
+							  "key": "cExecutionMode_1Get_2Upd",
+							  "value": "@1"
+							},
+							{
+							  "key": "Order_Number",
+							  "value": "wonumber"
+							}
+						  ],
+						  "api_outputSuccess": [
+							{
+							  "key": "QtyCompletedCurr",
+							  "targetfield": "",
+							  "prefixmsg": "Total Quantity: ",
+							  "suffixmsg": " (kg)"
+							},
+							{
+							  "key": "QtyCompletedCurr",
+							  "targetfield": "quantity",
+							  "prefixmsg": "",
+							  "suffixmsg": ""
+							},
+							{
+							  "key": "QtyCompletedCurr",
+							  "targetfield": "textresponse",
+							  "prefixmsg": "RESPONSE: \nTotal Completed Quantity: ",
+							  "suffixmsg": " (kg)"
+							}
+						  ],
+						  "api_outputError": [
+							{
+							  "key": "message",
+							  "targetfield": "",
+							  "prefixmsg": "",
+							  "suffixmsg": ""
+							},
+							{
+							  "key": "message",
+							  "targetfield": "textresponse",
+							  "prefixmsg": "Error on Request:\n",
+							  "suffixmsg": "\n>>"
+							}
+						  ]
+						},
+						{
+						  "name": "button2",
+						  "label": "Complete Qty",
+						  "api": "ORCH_POC100_WOCompletion",
+						  "api_input": [
+							{
+							  "key": "cExecutionMode_1Get_2Upd",
+							  "value": "@2"
+							}
+						  ],
+						  "api_outputSuccess": [
+							{
+							  "key": "QtyCompletedUpd",
+							  "targetfield": "",
+							  "prefixmsg": "Total Quantity: ",
+							  "suffixmsg": " (kg)"
+							}
+						  ],
+						  "api_outputError": [
+							{
+							  "key": "message",
+							  "targetfield": "",
+							  "prefixmsg": "",
+							  "suffixmsg": ""
+							}
+						  ]
+						}
+					  ]
+					}
+				  ]
+				  
+				  
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
